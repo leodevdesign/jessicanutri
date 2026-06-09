@@ -1765,3 +1765,246 @@
       overflow: visible;
       width: 100%;
     }
+
+    /* ==========================================
+       PÁGINAS DE ESPECIALIDADES (TEMPLATE)
+       ========================================== */
+    .servico-card {
+      position: relative;
+    }
+    
+    .servico-link {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: auto; /* Garante que fique alinhado na base do card */
+      transition: color 0.3s ease, transform 0.3s ease;
+      width: fit-content;
+    }
+    
+    .servico-card:hover .servico-link {
+      color: var(--color-white);
+      transform: translateX(4px);
+    }
+    
+    .servico-link::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 2rem;
+    }
+    
+    .breadcrumbs a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .breadcrumbs a:hover {
+      color: var(--color-accent);
+    }
+    
+    .breadcrumbs span {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Especialidade Hero */
+    .especialidade-hero {
+      background-color: var(--color-bg-dark);
+      padding: clamp(6rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 6rem);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .especialidade-hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(124, 203, 74, 0.08) 0%, rgba(5, 34, 11, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .especialidade-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+    
+    .especialidade-hero-title {
+      font-family: var(--font-title);
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--color-white);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    
+    .especialidade-hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+
+    /* Conteúdo da Especialidade */
+    .especialidade-conteudo {
+      padding: clamp(4rem, 8vw, 6rem) 0;
+      background-color: var(--color-white);
+    }
+    
+    .especialidade-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    
+    @media (max-width: 992px) {
+      .especialidade-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+    
+    .especialidade-texto {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      color: var(--color-text-sec);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    
+    .especialidade-texto h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.75rem, 3vw, 2.2rem);
+      color: var(--color-text-primary);
+      font-weight: 800;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Lista de Benefícios */
+    .especialidade-beneficios {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .especialidade-beneficio-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    
+    .especialidade-beneficio-icon {
+      flex-shrink: 0;
+      background-color: rgba(95, 175, 63, 0.1);
+      color: var(--color-primary);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .especialidade-beneficio-text strong {
+      color: var(--color-text-primary);
+    }
+
+    /* Galeria de Imagens da Especialidade */
+    .especialidade-imagens {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .especialidade-img-wrapper {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-medium);
+      border: 1px solid var(--border-soft);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .especialidade-img-wrapper:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(5, 34, 11, 0.08);
+    }
+    
+    .especialidade-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Bloco CTA Especialidade */
+    .especialidade-cta {
+      background-color: var(--color-bg-dark-sec);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 32px;
+      padding: clamp(2rem, 4vw, 3.5rem);
+      margin-top: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    @media (max-width: 768px) {
+      .especialidade-cta {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+      }
+      .especialidade-cta .btn {
+        width: 100%;
+      }
+    }
+    
+    .especialidade-cta-content {
+      max-width: 600px;
+    }
+    
+    .especialidade-cta-title {
+      font-family: var(--font-title);
+      font-size: clamp(1.5rem, 3vw, 1.85rem);
+      font-weight: 800;
+      color: var(--color-white);
+      margin-bottom: 0.75rem;
+    }
+    
+    .especialidade-cta-text {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
