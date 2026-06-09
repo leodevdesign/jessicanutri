@@ -318,6 +318,40 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // 7. Especialidade Sub-pages Content
+    gsap.to(".especialidade-texto", {
+      scrollTrigger: {
+        trigger: ".especialidade-conteudo",
+        start: "top 80%",
+        toggleActions: "play none none none"
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    gsap.to(".especialidade-imagens", {
+      scrollTrigger: {
+        trigger: ".especialidade-conteudo",
+        start: "top 80%",
+        toggleActions: "play none none none"
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      delay: 0.15,
+      ease: "power3.out"
+    });
+
+    // Specialty Hero Content entry on load
+    gsap.from(".especialidade-hero-content", {
+      opacity: 0,
+      y: 30,
+      duration: 1.2,
+      ease: "power3.out"
+    });
+
     // ==========================================
     // 5. SMOOTH SCROLL OVERRIDE FOR LINKS
     // ==========================================
