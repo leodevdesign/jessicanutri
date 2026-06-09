@@ -25,6 +25,13 @@
     # Permissions-Policy
     # Bloqueia recursos desnecessários do dispositivo (câmera, microfone, geolocalização)
     Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+
+    # Evita cache persistente de arquivos HTML/PHP para que atualizações apareçam na hora
+    <FilesMatch "\.(html|htm|php)$">
+        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
 </IfModule>
 
 # ======================================================================
@@ -33,6 +40,9 @@
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresDefault "access plus 1 month"
+
+    # HTML (Não cachear para refletir alterações instantaneamente)
+    ExpiresByType text/html "access plus 0 seconds"
 
     # CSS & JS (1 Ano de cache por serem versionados/estáticos)
     ExpiresByType text/css "access plus 1 year"
