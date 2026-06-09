@@ -32,6 +32,12 @@
         Header set Pragma "no-cache"
         Header set Expires "0"
     </FilesMatch>
+
+    # Desativa o cache do servidor LiteSpeed para evitar que exiba páginas antigas em cache
+    <IfModule LiteSpeed>
+        RewriteEngine On
+        RewriteRule .* - [E=Cache-Control:no-cache]
+    </IfModule>
 </IfModule>
 
 # ======================================================================
