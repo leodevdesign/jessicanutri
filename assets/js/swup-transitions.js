@@ -25,6 +25,28 @@ const swup = new Swup({
 
 window.__jessicaSwup = swup;
 
+document.addEventListener('click', (event) => {
+  const link = event.target.closest(specialtyLinkSelector);
+  if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+    return;
+  }
+
+  const targetUrl = new URL(link.href, window.location.href);
+  if (targetUrl.origin !== window.location.origin || link.target === '_blank') {
+    return;
+  }
+
+  const currentPath = window.location.pathname.replace(/\/$/, '/index.html');
+  const targetPath = targetUrl.pathname.replace(/\/$/, '/index.html');
+  if (currentPath === targetPath && window.location.hash === targetUrl.hash) {
+    return;
+  }
+
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  swup.navigate(`${targetUrl.pathname}${targetUrl.search}${targetUrl.hash}`);
+}, true);
+
 if (window.gsap) {
   swup.hooks.replace('animation:out:await', () => {
     return new Promise((resolve) => {

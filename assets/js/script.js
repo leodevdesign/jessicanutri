@@ -397,13 +397,15 @@ document.addEventListener('DOMContentLoaded', () => {
       duration: 1.2,
       ease: "power3.out",
       onComplete: () => {
-        gsap.to(".phone-container .bubble", {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          stagger: 1.2,
-          ease: "power3.out"
-        });
+        if (document.querySelector('.phone-container .bubble')) {
+          gsap.to(".phone-container .bubble", {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 1.2,
+            ease: "power3.out"
+          });
+        }
       }
     });
     }
@@ -478,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.querySelectorAll('.footer-logo-link').forEach(link => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
-        window.location.href = 'index.html?site=segundo-ajuste#inicio';
+        window.location.href = 'index.html#inicio';
       });
     });
 

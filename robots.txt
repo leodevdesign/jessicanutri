@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://projetos.nextautomatik.com/jessicanutri/sitemap.xml
