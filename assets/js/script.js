@@ -477,10 +477,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 5. SMOOTH SCROLL OVERRIDE FOR LINKS
     // ==========================================
-document.querySelectorAll('.footer-logo-link').forEach(link => {
+    const getCurrentPageState = () => {
+      const currentPath = window.location.pathname;
+      const currentFile = currentPath.split('/').filter(Boolean).pop() || '';
+      return {
+        isHomePage: currentPath.endsWith('/') || currentFile === 'index.html'
+      };
+    };
+
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest('.logo-link, .nav-link, .footer-logo-link, .footer-link');
+      if (!link) return;
+
+      const href = link.getAttribute('href') || '';
+      const { isHomePage } = getCurrentPageState();
+      if (isHomePage) return;
+
+      const isHomeLogo = link.classList.contains('logo-link') || link.classList.contains('footer-logo-link');
+      const homeHashMatch = href.match(/^(?:\.\/|index\.html)?(#.+)$/);
+
+      if (isHomeLogo || homeHashMatch) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        window.location.href = isHomeLogo ? './' : `./${homeHashMatch[1]}`;
+      }
+    }, true);
+
+    document.querySelectorAll('.footer-logo-link').forEach(link => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
-        window.location.href = 'index.html#inicio';
+        window.location.href = './';
       });
     });
 
@@ -494,14 +520,10 @@ document.querySelectorAll('.footer-logo-link').forEach(link => {
       if (targetId === '#') return;
 
       // Verifica se o link aponta para a página atual (Home)
-      const currentPath = window.location.pathname;
-      const isCurrentPage = pagePath === '' || 
-                            pagePath === '.' || 
-                            pagePath === './' || 
-                            pagePath === 'index.html' || 
-                            pagePath === './index.html' ||
-                            currentPath.endsWith('/' + pagePath) ||
-                            (currentPath.endsWith('/') && (pagePath === 'index.html' || pagePath === '' || pagePath === './' || pagePath === '.'));
+      const { isHomePage } = getCurrentPageState();
+      const isCurrentPage =
+        pagePath === '' ||
+        (isHomePage && (pagePath === '.' || pagePath === './' || pagePath === 'index.html' || pagePath === './index.html'));
 
       if (isCurrentPage) {
         const target = document.querySelector(targetId);

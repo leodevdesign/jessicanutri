@@ -6,10 +6,10 @@ import SwupPreloadPlugin from 'https://unpkg.com/@swup/preload-plugin@3?module';
 const specialtyLinkSelector = [
   'a.servico-link[href]',
   'a.btn-outra[href]',
-  'a.footer-link[href*="emagrecimento-saudavel.html"]',
-  'a.footer-link[href*="reeducacao-alimentar.html"]',
-  'a.footer-link[href*="saude-metabolica.html"]',
-  'a.footer-link[href*="nutricao-esportiva.html"]'
+  'a.footer-link[href*="emagrecimento-saudavel"]',
+  'a.footer-link[href*="reeducacao-alimentar"]',
+  'a.footer-link[href*="saude-metabolica"]',
+  'a.footer-link[href*="nutricao-esportiva"]'
 ].join(', ');
 
 const swup = new Swup({
@@ -36,8 +36,9 @@ document.addEventListener('click', (event) => {
     return;
   }
 
-  const currentPath = window.location.pathname.replace(/\/$/, '/index.html');
-  const targetPath = targetUrl.pathname.replace(/\/$/, '/index.html');
+  const normalizePath = (path) => path.replace(/\/$/, '/index').replace(/\.html$/, '');
+  const currentPath = normalizePath(window.location.pathname);
+  const targetPath = normalizePath(targetUrl.pathname);
   if (currentPath === targetPath && window.location.hash === targetUrl.hash) {
     return;
   }
