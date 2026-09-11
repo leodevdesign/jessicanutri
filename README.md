@@ -10,7 +10,6 @@ Site estatico em HTML, CSS e JavaScript para apresentacao de portfolio/landing p
 - `saude-metabolica.html`: pagina interna de especialidade.
 - `nutricao-esportiva.html`: pagina interna de especialidade.
 - `assets/`: CSS, JavaScript, imagens, icones e logos.
-- `.htaccess`: configuracao simples para Apache/Hostinger, com suporte a URLs sem `.html`.
 
 ## Publicacao
 
